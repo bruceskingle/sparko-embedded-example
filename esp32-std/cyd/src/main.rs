@@ -1,24 +1,4 @@
-// use std::{net::{IpAddr, UdpSocket}, sync::{Arc, Mutex}, thread, time::SystemTime};
-
-use chrono::Local;
-// use chrono::{DateTime, Local};
-// use esp_idf_hal::{gpio::PinDriver, ledc::LedcDriver};
-// use esp_idf_svc::{eventloop::EspSystemEventLoop, hal::peripherals::Peripherals, http::{Method, client::EspHttpConnection, server::EspHttpServer}, nvs::{EspDefaultNvsPartition, EspNvs}, timer::EspTaskTimerService};
-use log::info;
-use sparko_esp_std::{Feature, dyndns2::DynDns2, sparko_cyd::SparkoCyd};
-// use web_idf_esp::sparko_cyd::SparkoCyd;
-// use std::str::FromStr;
-
-
-
-// use std::net::{ToSocketAddrs};
-
-// use web_idf_esp::Feature;
-// use web_idf_esp::dyndns2::DynDns2;
-
-// use crate::{config::ConfigManager, http::HttpServerManager, led::LedManager, wifi::WiFiManager};
-
-
+use sparko_esp_std::{dyndns2::DynDns2, sparko_esp32_std::SparkoEsp32Std};
 
 fn main() {
 
@@ -43,11 +23,9 @@ fn run() -> anyhow::Result<()> {
     //     .with_feature(DynDns2::new())
     //     .build()?;
 
-    let mut features = Vec::<Box<dyn Feature>>::new();
-    features.push(Box::new(DynDns2::new()?));
-
-    log::info!("Trace 1");
-    let mut sparko_cyd = SparkoCyd::new(features)?;
+    let sparko_esp32 = SparkoEsp32Std::builder()?
+        .with_feature(Box::new(DynDns2::new()?))?
+        .build()?;
 
     // let cloned_ap_mode = sparko_cyd.ap_mode.clone();
     // sparko_cyd.server_manager.fn_handler("/", Method::Get, move |req| {
@@ -95,7 +73,7 @@ fn run() -> anyhow::Result<()> {
 
     
     log::info!("Trace 2");
-    sparko_cyd.start()
+    sparko_esp32.start()
     // ?;
     // sparko_cyd.run()
 }
