@@ -1,4 +1,4 @@
-use sparko_esp_std::{dyndns2::DynDns2, sparko_esp32_std::SparkoEsp32Std};
+use sparko_esp_std::{analog_clock_feature::AnalogClock, dyndns2::DynDns2, sparko_esp32_std::SparkoEsp32Std};
 
 fn main() {
 
@@ -25,6 +25,7 @@ fn run() -> anyhow::Result<()> {
 
     let sparko_esp32 = SparkoEsp32Std::builder()?
         .with_feature(Box::new(DynDns2::new()?))?
+        .with_feature(Box::new(AnalogClock::new()?))?
         .build()?;
 
     // let cloned_ap_mode = sparko_cyd.ap_mode.clone();
