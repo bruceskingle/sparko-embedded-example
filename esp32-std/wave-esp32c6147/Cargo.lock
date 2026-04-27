@@ -1721,6 +1721,7 @@ dependencies = [
  "esp-idf-sys",
  "futures",
  "log",
+ "sparko-embedded-std",
  "sparko-esp-std",
 ]
 

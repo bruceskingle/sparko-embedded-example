@@ -14,7 +14,7 @@ anyhow = "1.0.102"
 croner = "3.0.1"
 chrono = "0.4.44"
 
-#sparko-embedded-std = { path = "../../../sparko-embedded-std" }
+sparko-embedded-std = { path = "../../../sparko-embedded-std" }
 sparko-esp-std = { path = "../../../sparko-esp-std", features = ["board-wave-esp32c6147"]}
 
 

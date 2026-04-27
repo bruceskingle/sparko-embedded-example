@@ -17,15 +17,10 @@ fn main() {
 }
 
 fn run() -> anyhow::Result<()> {
-    // let mut builder = SparkoCyd::Builder::new();
-
-    // let mut sparko_cyd = builder
-    //     .with_feature(DynDns2::new())
-    //     .build()?;
-
     let sparko_esp32 = SparkoEsp32Std::builder()?
         .with_feature(Box::new(DynDns2::new()?))?
         .with_feature(Box::new(AnalogClock::new()?))?
+        .with_display_orientation(sparko_embedded_std::DisplayOrientation::Rotate0)?
         .build()?;
 
     // let cloned_ap_mode = sparko_cyd.ap_mode.clone();

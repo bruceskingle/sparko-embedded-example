@@ -1,4 +1,4 @@
-
+use sparko_embedded_std::DisplayOrientation;
 use sparko_esp_std::{analog_clock_feature::AnalogClock, dyndns2::DynDns2, sparko_esp32_std::SparkoEsp32Std};
 
 
@@ -26,9 +26,10 @@ fn run() -> anyhow::Result<()> {
     //     .with_feature(DynDns2::new())
     //     .build()?;
 
-    let mut sparko_esp32 = SparkoEsp32Std::builder()?
+    let sparko_esp32 = SparkoEsp32Std::builder()?
         .with_feature(Box::new(DynDns2::new()?))?
         .with_feature(Box::new(AnalogClock::new()?))?
+        .with_display_orientation(DisplayOrientation::Rotate270)?
         .build()?;
 
     // let mut features = Vec::<Box<dyn Feature>>::new();
