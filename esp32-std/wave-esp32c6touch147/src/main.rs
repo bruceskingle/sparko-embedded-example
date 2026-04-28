@@ -1,4 +1,6 @@
 
+use embedded_graphics::{prelude::{Point, Size}, primitives::Rectangle};
+use sparko_embedded_std::DisplayOrientation;
 use sparko_esp_std::{analog_clock_feature::AnalogClock, dyndns2::DynDns2, sparko_esp32_std::SparkoEsp32Std};
 
 
@@ -28,7 +30,17 @@ fn run() -> anyhow::Result<()> {
 
     let mut sparko_esp32 = SparkoEsp32Std::builder()?
         .with_feature(Box::new(DynDns2::new()?))?
-        .with_feature(Box::new(AnalogClock::new()?))?
+        .with_feature(Box::new(AnalogClock::builder()
+            .with_layout(|rect| {
+                let margin = 3;
+                let size = std::cmp::min(rect.size.width, rect.size.height) - 2 * margin as u32;
+                Rectangle {
+                    top_left: Point { x: rect.top_left.x + margin, y: rect.top_left.y + margin },
+                    size: Size { width: size, height: size },
+                }
+            })
+            .build()?))?
+        .with_display_orientation(DisplayOrientation::Rotate270)?
         .build()?;
 
     // let mut features = Vec::<Box<dyn Feature>>::new();

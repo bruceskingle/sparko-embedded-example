@@ -1714,6 +1714,7 @@ dependencies = [
  "chrono",
  "croner",
  "embassy-time",
+ "embedded-graphics",
  "embedded-svc",
  "embuild",
  "esp-idf-hal",
@@ -1721,6 +1722,7 @@ dependencies = [
  "esp-idf-sys",
  "futures",
  "log",
+ "sparko-embedded-std",
  "sparko-esp-std",
 ]
 

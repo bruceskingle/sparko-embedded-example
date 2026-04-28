@@ -19,7 +19,16 @@ fn main() {
 fn run() -> anyhow::Result<()> {
     let sparko_esp32 = SparkoEsp32Std::builder()?
         .with_feature(Box::new(DynDns2::new()?))?
-        .with_feature(Box::new(AnalogClock::new()?))?
+        .with_feature(Box::new(AnalogClock::builder()
+            // .with_layout(|rect| {
+            //     let margin = 3;
+            //     let size = std::cmp::min(rect.size.width, rect.size.height) - 2 * margin as u32;
+            //     Rectangle {
+            //         top_left: Point { x: rect.top_left.x + margin, y: rect.top_left.y + margin },
+            //         size: Size { width: size, height: size },
+            //     }
+            // })
+            .build()?))?
         .with_display_orientation(sparko_embedded_std::DisplayOrientation::Rotate0)?
         .build()?;
 
