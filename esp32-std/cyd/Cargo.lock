@@ -1407,6 +1407,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
 
 [[package]]
+name = "paste"
+version = "1.0.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a"
+
+[[package]]
 name = "percent-encoding"
 version = "2.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1551,6 +1557,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "rgb"
+version = "0.8.53"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "47b34b781b31e5d73e9fbc8689c70551fd1ade9a19e3e28cfec8580a79290cc4"
+
+[[package]]
 name = "rustc-hash"
 version = "2.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1678,6 +1690,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "67b1b7a3b5fe4f1376887184045fcf45c69e92af734b7aaddc05fb777b6fbd03"
 
 [[package]]
+name = "smart-leds"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "66df34e571fa9993fa6f99131a374d58ca3d694b75f9baac93458fe0d6057bf0"
+dependencies = [
+ "smart-leds-trait",
+]
+
+[[package]]
+name = "smart-leds-trait"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a7f4441a131924d58da6b83a7ad765c460e64630cce504376c3a87a2558c487f"
+dependencies = [
+ "rgb",
+]
+
+[[package]]
 name = "sparko-embedded-std"
 version = "0.1.0"
 dependencies = [
@@ -1705,8 +1735,10 @@ dependencies = [
  "esp-idf-sys",
  "futures",
  "log",
+ "smart-leds",
  "sparko-embedded-std",
  "sparko-esp-std",
+ "ws2812-esp32-rmt-driver 0.14.0",
 ]
 
 [[package]]
@@ -1729,8 +1761,10 @@ dependencies = [
  "log",
  "mipidsi",
  "simple-dns",
+ "smart-leds",
  "sparko-embedded-std",
  "url",
+ "ws2812-esp32-rmt-driver 0.14.0 (git+https://github.com/cat-in-136/ws2812-esp32-rmt-driver?rev=0c8385778019d130fb907900828bd48f3aea86d8)",
 ]
 
 [[package]]
@@ -2345,6 +2379,31 @@ name = "writeable"
 version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1ffae5123b2d3fc086436f8834ae3ab053a283cfac8fe0a0b8eaae044768a4c4"
+
+[[package]]
+name = "ws2812-esp32-rmt-driver"
+version = "0.14.0"
+dependencies = [
+ "embuild",
+ "esp-idf-hal",
+ "esp-idf-sys",
+ "heapless 0.8.0",
+ "paste",
+ "smart-leds-trait",
+]
+
+[[package]]
+name = "ws2812-esp32-rmt-driver"
+version = "0.14.0"
+source = "git+https://github.com/cat-in-136/ws2812-esp32-rmt-driver?rev=0c8385778019d130fb907900828bd48f3aea86d8#0c8385778019d130fb907900828bd48f3aea86d8"
+dependencies = [
+ "embuild",
+ "esp-idf-hal",
+ "esp-idf-sys",
+ "heapless 0.8.0",
+ "paste",
+ "smart-leds-trait",
+]
 
 [[package]]
 name = "yoke"
